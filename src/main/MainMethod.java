@@ -19,11 +19,11 @@ int choice = 0;
     while(choice < 1 || choice > 3){
 
             System.out.println("Select \"1\", \"2\", \"3\"");
-            if(mealChoice.hasNextInt())
-            choice = mealChoice.nextInt();
+            if(mealChoice.hasNextInt()){
+              choice = mealChoice.nextInt();
+            }
 
     }
-
 
 
      switch(choice){
