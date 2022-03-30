@@ -21,7 +21,7 @@ In the next iteration, we are planning to add a functioning input box where cust
 As of our last trial, the user stories functioned as planned when tested and others are in progress. Main method still in test phase. We are awaiting feedback from other groups to see if they notice any problems.
 
 To run the code, open command prompt and cd to the directory where project is stored (likely Downloads), then type:
-javac MainMethod.java (creates MainMethod class)
+javac MainMethod.java (creates MainMethod.class)
 java MainMethod.java (compiles and runs the code)
 
-javac can also be used towards other java files.
+javac can also be used towards other java folders (such as in test for example).
