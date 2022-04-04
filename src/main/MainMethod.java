@@ -1,11 +1,30 @@
 package main;
 
 import java.util.Scanner;
-//import menu.MenuItem;
-//import cart.UserCart;
+import menu.MenuItem;
+import cart.UserCart;
 
 public class MainMethod {
+
+    UserCart cart = new UserCart();
+    ArrayList<MenuItem> menu = new ArrayList<MenuItem>;
+    private void generateMenuItems(){
+        menu.add("Taco", 4.25, 153, 12);
+        menu.add("Pizza", 5.25, 357, 6);
+        menu.add("Corn", 7.25, 97, 3);
+    }
+    private MenuItem selectMenuItem(){
+
+    }
+
+    private int selectQuantity(MenuItem item){
+
+    }
+
   public static void main(String args[]) {
+
+
+
     System.out.println("Choose from the following menu items:");
     System.out.println("1. tacos");
     System.out.println("2. sushi");
