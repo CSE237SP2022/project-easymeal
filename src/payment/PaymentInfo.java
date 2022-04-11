@@ -28,6 +28,22 @@ public class PaymentInfo() {
         return csv;
     }
 
+    public int getZip() {
+        return zip;
+    }
+
+    public long getCreditCard() {
+        return creditCard;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getName() {
+        return name;
+    }
+
     public
 
     public boolean verifyForm(long creditCard) {
