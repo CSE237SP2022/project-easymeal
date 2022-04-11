@@ -9,20 +9,26 @@ public class PaymentInfo() {
     private int zip;
 
     PaymentInfo() {
-        String name;
-        String address;
-        long creditCard = 4012888888881881;
-        int csv = 111;
-        int zip = 11111;
+        this.name;
+        this.address;
+        this.creditCard = 4012888888881881;
+        this.csv = 111;
+        this.zip = 11111;
     }
 
     PaymentInfo(String n, String a, long cc, int cv, int z) {
-        String name = n;
-        String address = a;
-        long creditCard = cc;
-        int csv = cv;
-        int zip = z;
+        this.name = n;
+        this.address = a;
+        this.creditCard = cc;
+        this.csv = cv;
+        this.zip = z;
     }
+
+    public int getCsv() {
+        return csv;
+    }
+
+    public
 
     public boolean verifyForm(long creditCard) {
         if (creditCard.startsWith('37') || creditCard.startsWith('34')) {
