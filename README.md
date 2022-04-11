@@ -12,16 +12,13 @@ Ability to set quantities if ordering the same item
 Input box for name, address, credit card, etc. 
 Ability to add tip to final order
 
-Iteration 1 Update:
+Iteration 2 Update:
 
-User stories that were completed this section include a sample menu that covers the name, price, calories, and unit amount of the particular dish that remains in stock. Additionally, we added the ability to add/remove items from the cart, and get total price, calories (for health-conscious customers), and quantity of all the items ordered.
+User stories that were completed this section include a functional sample menu that covers the name, price, calories, and unit amount of the particular dish that remains in stock. Tip and tax functionality was added, along with printed menu options.  A user can now add items to a cart.  Lastly a shell script was created to assist with running the program and minor code reformatting was completed.
 
-In the next iteration, we are planning to add a functioning input box where customers can put their name, address, payment info, etc. to complete the online ordering process, as well as accounting for tax and tips. We will also work on developing the menu further to expand meal options and make it feel more authentic. We will aim to fix any unforeseen bugs as well from the first iteration.
+In the next iteration, we are planning to allow the user to add different quantities of items to the cart, remove an item from the cart, and get the total number of calories of all the items inside the cart.  We will finalize the main method to allow a user to submit an order.
 
-As of our last trial, the user stories functioned as planned when tested and others are in progress. Main method still in test phase. We are awaiting feedback from other groups to see if they notice any problems.
+To run the code, open command prompt and cd to project directory, then type:
+bash ./menu.sh
 
-To run the code, open command prompt and cd to the directory where project is stored (likely Downloads), then type:
-javac MainMethod.java (creates MainMethod.class)
-java MainMethod.java (compiles and runs the code)
-
-javac can also be used towards other java folders (such as in test for example).
+This command will start the program. A list of menu options can be printed by following instructions in the program.
