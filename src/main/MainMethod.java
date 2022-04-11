@@ -1,40 +1,18 @@
 package main;
 
-import java.util.ArrayList;
 import java.util.Scanner;
-import menu.MenuItem;
-import cart.UserCart;
+import main.MenuClass;
 
 public class MainMethod {
-
-    UserCart cart = new UserCart();
-    ArrayList<MenuItem> menu = new ArrayList<MenuItem>();
-    private void generateMenuItems(){
-        MenuItem taco = new MenuItem("Taco", 4.25, 153, 12);
-        MenuItem pizza = new MenuItem("Pizza", 5.25, 357, 6);
-        MenuItem corn = new MenuItem("Corn", 7.25, 97, 3);
-        menu.add(taco);
-        menu.add(pizza);
-        menu.add(corn);
-    }
-
-    private void printMenu(){
-        for (MenuItem item : menu){
-            System.out.println(item.getItemName() + " " + item.getItemPrice() + " " + item.getItemAmountInStock());
-        }
-    } // TODO: make this not long and ugly
-//    private MenuItem selectMenuItem(){
-//
-//    }
-//
-//    private int selectQuantity(MenuItem item){
-//
-//    }
     public static void main(String args[]) {
-        System.out.println("Choose from the following menu items:");
-        System.out.println("1. tacos");
-        System.out.println("2. sushi");
-        System.out.println("3. pizza");
+
+        MenuClass runMenu = new MenuClass();
+        runMenu.printMenu();
+
+//        System.out.println("Choose from the following menu items:");
+//        System.out.println("1. tacos");
+//        System.out.println("2. sushi");
+//        System.out.println("3. pizza");
 
         Scanner mealChoice = new Scanner(System.in);
         System.out.println();
