@@ -17,6 +17,12 @@ public class MainMethod {
         menu.add(pizza);
         menu.add(corn);
     }
+
+    private void printMenu(){
+        for (MenuItem item : menu){
+            System.out.println(item.getItemName() + " " + item.getItemPrice() + " " + item.getItemAmountInStock());
+        }
+    } // TODO: make this not long and ugly
 //    private MenuItem selectMenuItem(){
 //
 //    }
