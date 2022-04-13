@@ -7,24 +7,24 @@ import cart.UserCart;
 import menu.MenuItem;
 
 public class MainMethod {
-	private Scanner mealChoice; 
-    private UserCart cart;
-    private ArrayList<MenuItem> menu;
-
+	private final Scanner mealChoice;
+    private final UserCart cart;
+    private final ArrayList<MenuItem> menu;
+	private int quantity = 0;
+	private int choice;
+	private String yesOrNo;
     
     public MainMethod() {
     	mealChoice = new Scanner(System.in);
     	cart = new UserCart();
-    	menu = new ArrayList<MenuItem>(); 
+    	menu = new ArrayList<MenuItem>();
     	generateMenuItems(); 
     }
     
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 		MainMethod foodItemMenu = new MainMethod();
-
 		System.out.println("\nWelcome to EasyMeal!\n");
 		foodItemMenu.printMenuItems();
-
 		foodItemMenu.processOrder();
 	}
    
@@ -38,8 +38,7 @@ public class MainMethod {
         menu.add(corn);
         menu.add(salad);
     }
-    
-    
+
     private void printMenuItems(){
     	System.out.println("Menu: "); 
     	for (MenuItem item: menu) {
@@ -47,61 +46,27 @@ public class MainMethod {
     	}
     	System.out.println("Press 0 to exit the menu.");
     } 
-	
-    
+
 	private void processOrder() {
-		// scanner inputs:
-		int choice = -1, quantity;
-		String yesOrNo;
-		
-		// choose menu
-		System.out.println("Select menu item number:");
-		try {
-			choice = mealChoice.nextInt();
-		} catch (Exception e) {
-			System.out.println("Please enter an integer");
-		}
-		if (choice == 0) {
-			System.out.println("Leaving menu successful");
-			System.exit(0);
-		}
-		else if (choice >= 1 && choice <= menu.size()) {
-			// choose quantity
-			System.out.println("Select its quantity: ");
-			quantity = mealChoice.nextInt();
-			if (quantity > 0 && quantity <= menu.get(choice).getItemAmountInStock() ) {
-				System.out.println(menu.get(choice).getItemName()+", "
-		        		+ "$" + menu.get(choice).getItemPrice() + ", " 
-		        		+ (int) menu.get(choice).getItemCalories() + " calories. "
-		        		+ quantity + " unit(s) added to cart.");
-				cart.addToCart(menu.get(choice), quantity);
-				System.out.println("Would you like to order more food? (y/n): "); 
-				yesOrNo = mealChoice.next(); 
-				if(yesOrNo.equals("y")) {
-					processOrder();
-				}
-				else if (yesOrNo.equals("n")) {
-					System.out.println("Order total: " + cart.getTotalCartPrice());
-					//processTip();
-					System.out.println("Your order is processed.");
-				}
-				else {
-					System.out.println("Please enter y or n."); 
-					yesOrNo = mealChoice.next(); 
-				}
-			}
-			else if(quantity > menu.get(choice).getItemAmountInStock()) {
-				System.out.println("The item is out of stock."); 
-			}
-			else {
-				System.out.println("Please enter a valid quantity"); 
-			}
-		}
+		selectValidChoice();
+		selectValidQuantity();
+
+		System.out.println(menu.get(choice).getItemName()+", "
+				+ "$" + menu.get(choice).getItemPrice() + ", "
+				+ (int) menu.get(choice).getItemCalories() + " calories. "
+				+ quantity + " unit(s) added to cart.");
+		cart.addToCart(menu.get(choice), quantity);
+
+		selectMoreFood();
+
+		if(yesOrNo.equals("y")) { processOrder(); }
 		else {
-			System.out.println("Please enter a valid menu item number"); 
+			System.out.println("Order total: $" + String.format("%.2f", cart.getTotalCartPrice()));
+			//processTip();
+			System.out.println("Your order is processed.");
 		}
-	
 	}
+
 	private void processTip() {
 		String yesOrNoTip; 
 		yesOrNoTip = mealChoice.nextLine(); 
@@ -119,6 +84,55 @@ public class MainMethod {
 		}
 		else {
 			System.out.println("Please enter a valid input."); 
+		}
+	}
+
+	private void promptValidInt() {
+		while (!mealChoice.hasNextInt()) {
+			System.out.println("Please enter an integer");
+			mealChoice.next();
+		}
+	}
+
+	// choose menu
+	private void selectValidChoice() {
+		System.out.println("Select menu item number:");
+		promptValidInt();
+		choice = mealChoice.nextInt();
+		while (choice < 1 || choice > menu.size()) {
+			System.out.println("Please enter a valid menu item number or 0 to exit the menu");
+			promptValidInt();
+			choice = mealChoice.nextInt();
+			if (choice == 0) {
+				System.out.println("Leaving menu successful");
+				System.exit(0);
+			}
+		}
+	}
+
+	// choose quantity
+	private void selectValidQuantity() {
+		System.out.println("Select its quantity: ");
+		promptValidInt();
+		quantity = mealChoice.nextInt();
+		while (quantity < 1) {
+			System.out.println("Invalid quantity\nPlease try again");
+			promptValidInt();
+			quantity = mealChoice.nextInt();
+		}
+		while (quantity > menu.get(choice).getItemAmountInStock()) {
+			System.out.println("There is not enough item left in stock\nPlease choose a lower quantity");
+			promptValidInt();
+			quantity = mealChoice.nextInt();
+		}
+	}
+
+	private void selectMoreFood() {
+		System.out.println("Would you like to order more food? (y/n): ");
+		yesOrNo = mealChoice.next();
+		while (!yesOrNo.equals("y") && !yesOrNo.equals("n")) {
+			System.out.println("Please enter y or n");
+			yesOrNo = mealChoice.next();
 		}
 	}
 }
