@@ -36,25 +36,7 @@ public class MainMethod {
 
 		foodItemMenu.processOrder();
 		
-		System.out.println("Would you like to order more food? (y/n): "); 
-		yesOrNo = foodItemMenu.mealChoice.next(); 
-		if(yesOrNo.equals("y")) {
-			foodItemMenu.processOrder();
-			System.out.println("Would you like to order more food? (y/n): "); 
-			yesOrNo = foodItemMenu.mealChoice.next(); 
-		}
-		else if (yesOrNo.equals("n")) {
-			// tip function goes here. 
-			
-			
-			
-			System.out.println("Your order is processed."); 
-			
-		}
-		else {
-			System.out.println("Please enter y or n."); 
-			yesOrNo = foodItemMenu.mealChoice.next(); 
-		}
+		
 	}
    
     private void generateMenuItems(){
@@ -84,6 +66,7 @@ public class MainMethod {
 		String yesOrNo;
 		//
 		
+		
 		// choose menu
 		System.out.println("Select menu item number:");
 		choice = mealChoice.nextInt();
@@ -99,6 +82,20 @@ public class MainMethod {
 		        		+ "$" + menu.get(choice).getItemPrice() + ", " 
 		        		+ (int) menu.get(choice).getItemCalories() + " calories. "
 		        		+ quantity + " unit(s) added to cart."); 
+				System.out.println("Would you like to order more food? (y/n): "); 
+				yesOrNo = mealChoice.next(); 
+				if(yesOrNo.equals("y")) {
+					processOrder();
+				}
+				else if (yesOrNo.equals("n")) {
+					processTip();
+					System.out.println("Your order is processed."); 
+					
+				}
+				else {
+					System.out.println("Please enter y or n."); 
+					yesOrNo = mealChoice.next(); 
+				}
 			}
 			else if(quantity > menu.get(choice).getItemAmountInStock()) {
 				System.out.println("The item is out of stock."); 
@@ -110,26 +107,26 @@ public class MainMethod {
 		else {
 			System.out.println("Please enter a valid menu item number"); 
 		}
-		
-		
+	
 	}
-//	public void processTip() {
-//		String yesOrNoTip; 
-//		System.out.println("Would you like to add a tip? (y/n)"); 
-//		if(yesOrNoTip.equals("y")) {
-//			System.out.println("How much would you like to tip? [Ex. type '15' as 15%]");
-//			foodItemMenu.processOrder();
-//			System.out.println("Would you like to order more food? (y/n): "); 
-//			yesOrNoTip = foodItemMenu.mealChoice.next(); 
-//		}
-//		else if (yesOrNoTip.equals("n")) {
-//			// tip function goes here. 
-//			
-//			
-//			
-//			System.out.println("Your order is processed."); 
-//			
-//		}
-//	}
+	public void processTip() {
+		String yesOrNoTip; 
+		yesOrNoTip = mealChoice.nextLine(); 
+		System.out.println("Would you like to add a tip? (y/n)"); 
+		if(yesOrNoTip.equals("y")) {
+			System.out.println("How much would you like to tip? [Ex. type '15' as 15%]");
+			processOrder();
+			System.out.println("Would you like to order more food? (y/n): "); 
+			yesOrNoTip = mealChoice.nextLine(); 
+		}
+		else if (yesOrNoTip.equals("n")) {
+			// tip function goes here.
+			System.out.println("Your order is processed."); 
+			
+		}
+		else {
+			System.out.println("Please enter a valid input."); 
+		}
+	}
     
 }
