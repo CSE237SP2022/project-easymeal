@@ -18,7 +18,7 @@ User stories that were completed this section include a functional sample menu t
 
 In the next iteration, we are planning to add tip and tax functionality to the main method after order is finalized, remove items from the cart, and get the total number of calories of all the items inside the cart. We will finalize the main method to allow a user to submit an order, add tip, and then be prompted to enter name and credit card information to complete the order.
 
-To run the code, open command prompt and cd to project directory, then type:
-bash ./menu.sh
+To run the code, open command prompt and cd to project directory, then type:  
+```bash ./menu.sh```
 
 This command will start the program. A list of menu options can be printed by following instructions in the program.
