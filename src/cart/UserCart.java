@@ -4,6 +4,7 @@ import menu.MenuItem;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 public class UserCart {
     private HashMap<MenuItem, Integer> cart = null;
@@ -63,5 +64,20 @@ public class UserCart {
             totalItems += quantity;
         }
         return totalItems;
+    }
+    
+    public double getFinalCartPrice() {
+    	Scanner scan = new Scanner(System.in);
+    	double theCartPrice = getTotalCartPrice();
+        double tip;
+        double finalPrice = 0.0;
+        double tax = 0.114;
+        //Standard restaurant tax in St. Louis		
+        System.out.println("How much would you like to tip? Enter the percent amount without the % [Ex. use '15' for test case purposes]");
+        tip = scan.nextDouble()/100;
+        if (theCartPrice > 0) {
+        	finalPrice = theCartPrice + (theCartPrice * tip) + (theCartPrice * tax);
+        }
+        return finalPrice;
     }
 }
