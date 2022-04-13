@@ -69,6 +69,7 @@ public class UserCart {
     public double getFinalCartPrice() {
     	Scanner scan = new Scanner(System.in);
     	double theCartPrice = getTotalCartPrice();
+        //Removed tipFunction.java class from iteration 1 and added to existing userCart method
         double tip;
         double finalPrice = 0.0;
         double tax = 0.114;
