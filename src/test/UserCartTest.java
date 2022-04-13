@@ -12,9 +12,9 @@ class UserCartTest {
     private UserCart cart;
     @BeforeEach
     void setUp() {
-        item1 = new MenuItem("tacos", 3.55, 156, 100);
-        item2 = new MenuItem("sushi", 9.99, 200, 1);
-        item3 = new MenuItem("pizza", 2.00, 389, 3);
+        item1 = new MenuItem(1, "tacos", 3.55, 156, 100);
+        item2 = new MenuItem(2, "sushi", 9.99, 200, 1);
+        item3 = new MenuItem(3, "pizza", 2.00, 389, 3);
         cart = new UserCart();
     }
 
