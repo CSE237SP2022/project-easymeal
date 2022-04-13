@@ -70,6 +70,7 @@ public class UserCart {
     	Scanner scan = new Scanner(System.in);
     	double theCartPrice = getTotalCartPrice();
         double tip;
+        //Removed tipFunction.java class from iteration 1 and added to existing userCart method
         double finalPrice = 0.0;
         double tax = 0.114;
         //Standard restaurant tax in St. Louis		
