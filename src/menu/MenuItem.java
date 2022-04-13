@@ -2,18 +2,33 @@ package menu;
 
 
 public class MenuItem {
+	private int itemKey; 
 	private String itemName; 
 	private double itemPrice;
 	private int itemCalories;
 	private int itemAmountInStock; 
 	
-	public MenuItem(String itemName, double itemPrice, int itemCalories, int itemAmountInStock) {
+	
+	
+	public MenuItem() {
+		itemKey = -1;
+		itemName = ""; 
+		itemPrice = 0.0; 
+		itemCalories = 0;
+		itemAmountInStock = 0; 
+	}
+	public MenuItem(int itemKey, String itemName, double itemPrice, int itemCalories, int itemAmountInStock) {
+		this.itemKey = itemKey; 
 		this.itemName = itemName;
 		this.itemPrice = itemPrice; 
 		this.itemCalories = itemCalories; 
 		this.itemAmountInStock = itemAmountInStock; // quantity of items currently in stock
 	}
 	// things that can be added later:  wholeSalePrice, retailPrice, foodDescription... 
+	
+	public int getItemKey() {
+		return itemKey;
+	}
 	
 	public String getItemName() {
 		return itemName; 

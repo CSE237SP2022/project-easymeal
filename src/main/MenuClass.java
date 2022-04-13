@@ -17,19 +17,33 @@ public class MenuClass {
     }
 
     private void generateMenuItems(){
-        MenuItem taco = new MenuItem("Taco", 4.25, 153, 12);
-        MenuItem pizza = new MenuItem("Pizza", 5.25, 357, 6);
-        MenuItem corn = new MenuItem("Corn", 7.25, 97, 3);
+        MenuItem taco = new MenuItem(1, "Taco", 4.25, 153, 12);
+        MenuItem pizza = new MenuItem(2, "Pizza", 5.25, 357, 6);
+        MenuItem corn = new MenuItem(3, "Corn", 7.25, 97, 3);
+        MenuItem salad = new MenuItem(4, "Salad", 5.71, 97, 3); 
         menu.add(taco);
         menu.add(pizza);
         menu.add(corn);
+        menu.add(salad);
     }
 
-    public void printMenu(){
-        for (MenuItem item : menu){
-            System.out.println(item.getItemName() + " " + item.getItemPrice() + " " + item.getItemAmountInStock());
-        }
-    } // TODO: make this not long and ugly
+    
+    
+    
+    
+    
+    
+    
+    // getter 
+   
+    public int getMenuLength() {
+    	return menu.size(); 
+    }
+    public ArrayList <MenuItem> getMenuArrayList() {
+    	return menu; 
+    }
+
+    // TODO: make this not long and ugly
 
     //    private MenuItem selectMenuItem(){
 //

@@ -11,10 +11,16 @@ class MenuItemTest {
 	private MenuItem item;
 	@BeforeEach
 	void setup() {  // put first line in each test in setup. 
-		item = new MenuItem("tacos", 3.55, 156, 100); // name, price, calories, amount in stock 
+		item = new MenuItem(1, "tacos", 3.55, 156, 100); // name, price, calories, amount in stock 
 	}
 	
 	// getter tests
+	@Test
+	void testGetItemKey() {
+		int itemKey = item.getItemKey();
+		assertTrue(1 == itemKey); 
+	}
+	
 	@Test
 	void testGetItemName() {
 		String itemName = item.getItemName();
