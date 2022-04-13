@@ -19,23 +19,13 @@ public class MainMethod {
     	generateMenuItems(); 
     }
     
-    
-    
 	public static void main(String args[]) {
 		MainMethod foodItemMenu = new MainMethod();
 
 		System.out.println("\nWelcome to EasyMeal!\n");
 		foodItemMenu.printMenuItems();
-		
-		// scanner inputs:
-
-		String yesOrNo; 
-		// 
-		
 
 		foodItemMenu.processOrder();
-		
-		
 	}
    
     private void generateMenuItems(){
@@ -50,7 +40,7 @@ public class MainMethod {
     }
     
     
-    public void printMenuItems(){
+    private void printMenuItems(){
     	System.out.println("Menu: "); 
     	for (MenuItem item: menu) {
     		System.out.println(item.getItemKey() + ". " + item.getItemName() + " $" + item.getItemPrice());
@@ -59,14 +49,18 @@ public class MainMethod {
     } 
 	
     
-	public void processOrder() {
+	private void processOrder() {
 		// scanner inputs:
-		int choice, quantity;
+		int choice = -1, quantity;
 		String yesOrNo;
 		
 		// choose menu
 		System.out.println("Select menu item number:");
-		choice = mealChoice.nextInt();
+		try {
+			choice = mealChoice.nextInt();
+		} catch (Exception e) {
+			System.out.println("Please enter an integer");
+		}
 		if (choice == 0) {
 			System.out.println("Leaving menu successful");
 			System.exit(0);
@@ -79,16 +73,17 @@ public class MainMethod {
 				System.out.println(menu.get(choice).getItemName()+", "
 		        		+ "$" + menu.get(choice).getItemPrice() + ", " 
 		        		+ (int) menu.get(choice).getItemCalories() + " calories. "
-		        		+ quantity + " unit(s) added to cart."); 
+		        		+ quantity + " unit(s) added to cart.");
+				cart.addToCart(menu.get(choice), quantity);
 				System.out.println("Would you like to order more food? (y/n): "); 
 				yesOrNo = mealChoice.next(); 
 				if(yesOrNo.equals("y")) {
 					processOrder();
 				}
 				else if (yesOrNo.equals("n")) {
+					System.out.println("Order total: " + cart.getTotalCartPrice());
 					processTip();
-					System.out.println("Your order is processed."); 
-					
+					System.out.println("Your order is processed.");
 				}
 				else {
 					System.out.println("Please enter y or n."); 
@@ -107,7 +102,7 @@ public class MainMethod {
 		}
 	
 	}
-	public void processTip() {
+	private void processTip() {
 		String yesOrNoTip; 
 		yesOrNoTip = mealChoice.nextLine(); 
 		System.out.println("Would you like to add a tip? (y/n)"); 
@@ -126,5 +121,4 @@ public class MainMethod {
 			System.out.println("Please enter a valid input."); 
 		}
 	}
-    
 }
