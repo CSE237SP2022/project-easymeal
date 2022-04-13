@@ -76,4 +76,11 @@ class UserCartTest {
         assertEquals(1367, cart.getTotalCalories(), 0.05);
     }
     
+    @Test
+    void getFinalCartPrice() {
+        cart.addToCart(item3, 3);
+        cart.addToCart(item2, 1);
+        assertEquals(20.21, cart.getFinalCartPrice(), 0.05);
+        //Assumes 15% tip entered, otherwise will fail
+    }
 }
