@@ -75,4 +75,5 @@ class UserCartTest {
         cart.addToCart(item2, 1);
         assertEquals(1367, cart.getTotalCalories(), 0.05);
     }
+    
 }

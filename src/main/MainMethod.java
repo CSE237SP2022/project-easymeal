@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import cart.UserCart;
-import main.MenuClass;
 import menu.MenuItem;
 
 public class MainMethod {
@@ -30,30 +29,27 @@ public class MainMethod {
 		foodItemMenu.printMenuItems();
 		
 		// scanner inputs:
-		int choice ,quantity; 
+
 		String yesOrNo; 
 		// 
 		
-		System.out.println("Select menu item number:");
-		choice = foodItemMenu.mealChoice.nextInt();
-		System.out.println("Select its quantity: ");
-		quantity = foodItemMenu.mealChoice.nextInt();
-		foodItemMenu.processOrder(choice, quantity);
+
+		foodItemMenu.processOrder();
 		
 		System.out.println("Would you like to order more food? (y/n): "); 
 		yesOrNo = foodItemMenu.mealChoice.next(); 
 		if(yesOrNo.equals("y")) {
-			System.out.println("Select menu item number:");
-			choice = foodItemMenu.mealChoice.nextInt();
-			System.out.println("Select its quantity: ");
-			quantity = foodItemMenu.mealChoice.nextInt();
-			foodItemMenu.processOrder(choice, quantity);
-			
+			foodItemMenu.processOrder();
 			System.out.println("Would you like to order more food? (y/n): "); 
 			yesOrNo = foodItemMenu.mealChoice.next(); 
 		}
 		else if (yesOrNo.equals("n")) {
+			// tip function goes here. 
+			
+			
+			
 			System.out.println("Your order is processed."); 
+			
 		}
 		else {
 			System.out.println("Please enter y or n."); 
@@ -72,6 +68,7 @@ public class MainMethod {
         menu.add(salad);
     }
     
+    
     public void printMenuItems(){
     	System.out.println("Menu: "); 
     	for (MenuItem item: menu) {
@@ -81,13 +78,58 @@ public class MainMethod {
     } 
 	
     
-    public void processOrder(int choice, int quantity){
-    	System.out.println(menu.get(choice).getItemName()+", "
-        		+ "$" + menu.get(choice).getItemPrice() + ", " 
-        		+ (int) menu.get(choice).getItemCalories() + " calories. "
-        		+ quantity + " unit(s) added to cart."); 
-    	
-    }
-	
+	public void processOrder() {
+		// scanner inputs:
+		int choice, quantity;
+		String yesOrNo;
+		//
+		
+		// choose menu
+		System.out.println("Select menu item number:");
+		choice = mealChoice.nextInt();
+		if (choice == 0) {
+			
+		}
+		else if (choice >= 1 && choice <= menu.size()) {
+			// choose quantity
+			System.out.println("Select its quantity: ");
+			quantity = mealChoice.nextInt();
+			if (quantity > 0 && quantity <= menu.get(choice).getItemAmountInStock() ) {
+				System.out.println(menu.get(choice).getItemName()+", "
+		        		+ "$" + menu.get(choice).getItemPrice() + ", " 
+		        		+ (int) menu.get(choice).getItemCalories() + " calories. "
+		        		+ quantity + " unit(s) added to cart."); 
+			}
+			else if(quantity > menu.get(choice).getItemAmountInStock()) {
+				System.out.println("The item is out of stock."); 
+			}
+			else {
+				System.out.println("Please enter a valid quantity"); 
+			}
+		}
+		else {
+			System.out.println("Please enter a valid menu item number"); 
+		}
+		
+		
+	}
+//	public void processTip() {
+//		String yesOrNoTip; 
+//		System.out.println("Would you like to add a tip? (y/n)"); 
+//		if(yesOrNoTip.equals("y")) {
+//			System.out.println("How much would you like to tip? [Ex. type '15' as 15%]");
+//			foodItemMenu.processOrder();
+//			System.out.println("Would you like to order more food? (y/n): "); 
+//			yesOrNoTip = foodItemMenu.mealChoice.next(); 
+//		}
+//		else if (yesOrNoTip.equals("n")) {
+//			// tip function goes here. 
+//			
+//			
+//			
+//			System.out.println("Your order is processed."); 
+//			
+//		}
+//	}
     
 }
