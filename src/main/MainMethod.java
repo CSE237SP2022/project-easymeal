@@ -82,7 +82,7 @@ public class MainMethod {
 				}
 				else if (yesOrNo.equals("n")) {
 					System.out.println("Order total: " + cart.getTotalCartPrice());
-					processTip();
+					//processTip();
 					System.out.println("Your order is processed.");
 				}
 				else {
