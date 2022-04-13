@@ -24,8 +24,7 @@ public class MainMethod {
 	public static void main(String args[]) {
 		MainMethod foodItemMenu = new MainMethod();
 
-		System.out.println("Welcome to EasyMeal!");
-		System.out.println();
+		System.out.println("\nWelcome to EasyMeal!\n");
 		foodItemMenu.printMenuItems();
 		
 		// scanner inputs:
@@ -56,7 +55,7 @@ public class MainMethod {
     	for (MenuItem item: menu) {
     		System.out.println(item.getItemKey() + ". " + item.getItemName() + " $" + item.getItemPrice());
     	}
-    	System.out.println("Press 0 to exit the menu."); 
+    	System.out.println("Press 0 to exit the menu.");
     } 
 	
     
@@ -64,14 +63,13 @@ public class MainMethod {
 		// scanner inputs:
 		int choice, quantity;
 		String yesOrNo;
-		//
-		
 		
 		// choose menu
 		System.out.println("Select menu item number:");
 		choice = mealChoice.nextInt();
 		if (choice == 0) {
-			
+			System.out.println("Leaving menu successful");
+			System.exit(0);
 		}
 		else if (choice >= 1 && choice <= menu.size()) {
 			// choose quantity
