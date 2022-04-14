@@ -20,7 +20,7 @@ public class MainMethod {
     	menu = new ArrayList<MenuItem>();
     	generateMenuItems(); 
     }
-    
+
 	public static void main(String[] args) {
 		MainMethod foodItemMenu = new MainMethod();
 		System.out.println("\nWelcome to EasyMeal!\n");
@@ -108,6 +108,7 @@ public class MainMethod {
 				System.exit(0);
 			}
 		}
+		choice -= 1;
 	}
 
 	// choose quantity
