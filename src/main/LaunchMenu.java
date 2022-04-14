@@ -6,7 +6,7 @@ import java.util.Scanner;
 import cart.UserCart;
 import menu.MenuItem;
 
-public class MainMethod {
+public class LaunchMenu {
 	private final Scanner mealChoice;
     private final UserCart cart;
     private final ArrayList<MenuItem> menu;
@@ -14,15 +14,15 @@ public class MainMethod {
 	private int choice;
 	private String yesOrNo;
     
-    public MainMethod() {
+    public LaunchMenu() {
     	mealChoice = new Scanner(System.in);
     	cart = new UserCart();
     	menu = new ArrayList<MenuItem>();
-    	generateMenuItems(); 
+    	generateMenuItems();
     }
 
 	public static void main(String[] args) {
-		MainMethod foodItemMenu = new MainMethod();
+		LaunchMenu foodItemMenu = new LaunchMenu();
 		System.out.println("\nWelcome to EasyMeal!\n");
 		foodItemMenu.printMenuItems();
 		foodItemMenu.processOrder();
@@ -57,11 +57,11 @@ public class MainMethod {
 				+ quantity + " unit(s) added to cart.");
 		cart.addToCart(menu.get(choice), quantity);
 
-		selectMoreFood();
+		selectYesNo();
 
-		if(yesOrNo.equals("y")) { processOrder(); }
+		if (yesOrNo.equals("y")) { processOrder(); }
 		else {
-			System.out.println("Order total: $" + String.format("%.2f", cart.getTotalCartPrice()));
+			System.out.println("Order total: $" + String.format("%.2f", cart.getFinalCartPrice()));
 			//processTip();
 			System.out.println("Your order is processed.");
 		}
@@ -128,7 +128,7 @@ public class MainMethod {
 		}
 	}
 
-	private void selectMoreFood() {
+	private void selectYesNo() {
 		System.out.println("Would you like to order more food? (y/n): ");
 		yesOrNo = mealChoice.next();
 		while (!yesOrNo.equals("y") && !yesOrNo.equals("n")) {

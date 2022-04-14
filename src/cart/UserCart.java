@@ -73,12 +73,27 @@ public class UserCart {
         //Removed tipFunction.java class from iteration 1 and added to existing userCart method
         double finalPrice = 0.0;
         double tax = 0.114;
-        //Standard restaurant tax in St. Louis		
+        //Standard restaurant tax in St. Louis
+        System.out.println("Subtotal: $" + String.format("%.2f", theCartPrice));
+        System.out.println("Tax: $" + String.format("%.2f", theCartPrice * tax));
         System.out.println("How much would you like to tip? Enter the percent amount without the % [Ex. use '15' for test case purposes]");
-        tip = scan.nextDouble()/100;
+        tip = promptValidDouble(scan) / 100;
         if (theCartPrice > 0) {
         	finalPrice = theCartPrice + (theCartPrice * tip) + (theCartPrice * tax);
         }
         return finalPrice;
+    }
+
+    private double promptValidDouble(Scanner scan) {
+        while (!scan.hasNextDouble()) {
+            System.out.println("Please enter a valid tip!");
+            scan.next();
+        }
+        double tip = scan.nextDouble();
+        if (tip < 0) {
+            System.out.println("Please enter a positive tip!");
+            tip = scan.nextDouble();
+        }
+        return tip;
     }
 }
