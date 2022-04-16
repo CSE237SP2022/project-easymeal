@@ -59,12 +59,13 @@ public class MainMethod {
 		
 		// choose menu
 		System.out.println("Select menu item number:");
-
 		largestPossibleInput = menu.size();
 		int menuChoice = this.getUserIntInput();
+		
+		
 		// choose quantity
 		System.out.println("Select its quantity: ");
-		largestPossibleInput = menu.get(menuChoice).getItemAmountInStock(); 
+		largestPossibleInput = menu.get(menuChoice-1).getItemAmountInStock(); 
 		int quantityChoice = this.getUserIntInput();
 		
 		if (quantityChoice > menu.get(quantityChoice).getItemAmountInStock()) {
@@ -72,9 +73,9 @@ public class MainMethod {
 		} 
 		
 		// print out order
-		System.out.println(menu.get(menuChoice-1).getItemName() + ", " + "$" + menu.get(menuChoice).getItemPrice() + ", "
-				+ (int) menu.get(menuChoice).getItemCalories() + " calories. " + quantityChoice + " unit(s) added to cart.");
-		cart.addToCart(menu.get(menuChoice), quantityChoice);
+		System.out.println(menu.get(menuChoice-1).getItemName() + ", " + "$" + menu.get(menuChoice-1).getItemPrice() + ", "
+				+ (int) menu.get(menuChoice-1).getItemCalories() + " calories. " + quantityChoice + " unit(s) added to cart.");
+		cart.addToCart(menu.get(menuChoice-1), quantityChoice);
 		
 		
 		System.out.println("Would you like to order more food? (y/n): ");
@@ -82,16 +83,14 @@ public class MainMethod {
 		if (yesOrNo.equals("y")) {
 			processOrder();
 		} else if (yesOrNo.equals("n")) {
-			processTip();
-			
-			System.out.println("Order total: $" + cart.getTotalCartPrice());
+			//processTip();
+			System.out.println("Order total: $" + String.format("%.2f", cart.getFinalCartPrice()));
+			//System.out.println("Order total: $" + cart.getTotalCartPrice());
 			
 			System.out.println("Your order is processed.");
+			
 		} 
-		
-		
-		
-		
+
 
 	}
 	private void processTip() {
