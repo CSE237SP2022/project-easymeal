@@ -79,6 +79,7 @@ public class UserCart {
         if (theCartPrice > 0) {
         	finalPrice = theCartPrice + (theCartPrice * tip) + (theCartPrice * tax);
         }
+        scan.close();   // Yi's edit
         return finalPrice;
     }
 }

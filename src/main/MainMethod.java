@@ -1,6 +1,7 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import cart.UserCart;
@@ -10,6 +11,7 @@ public class MainMethod {
 	private Scanner mealChoice; 
     private UserCart cart;
     private ArrayList<MenuItem> menu;
+    private static int largestPossibleInput; 
 
     
     public MainMethod() {
@@ -51,74 +53,106 @@ public class MainMethod {
     
 	private void processOrder() {
 		// scanner inputs:
-		int choice = -1, quantity;
+		int choice = -1;
+		int quantity;
 		String yesOrNo;
 		
 		// choose menu
 		System.out.println("Select menu item number:");
-		try {
-			choice = mealChoice.nextInt();
-		} catch (Exception e) {
-			System.out.println("Please enter an integer");
-		}
-		if (choice == 0) {
-			System.out.println("Leaving menu successful");
-			System.exit(0);
-		}
-		else if (choice >= 1 && choice <= menu.size()) {
-			// choose quantity
-			System.out.println("Select its quantity: ");
-			quantity = mealChoice.nextInt();
-			if (quantity > 0 && quantity <= menu.get(choice).getItemAmountInStock() ) {
-				System.out.println(menu.get(choice).getItemName()+", "
-		        		+ "$" + menu.get(choice).getItemPrice() + ", " 
-		        		+ (int) menu.get(choice).getItemCalories() + " calories. "
-		        		+ quantity + " unit(s) added to cart.");
-				cart.addToCart(menu.get(choice), quantity);
-				System.out.println("Would you like to order more food? (y/n): "); 
-				yesOrNo = mealChoice.next(); 
-				if(yesOrNo.equals("y")) {
-					processOrder();
-				}
-				else if (yesOrNo.equals("n")) {
-					System.out.println("Order total: " + cart.getTotalCartPrice());
-					//processTip();
-					System.out.println("Your order is processed.");
-				}
-				else {
-					System.out.println("Please enter y or n."); 
-					yesOrNo = mealChoice.next(); 
-				}
-			}
-			else if(quantity > menu.get(choice).getItemAmountInStock()) {
-				System.out.println("The item is out of stock."); 
-			}
-			else {
-				System.out.println("Please enter a valid quantity"); 
-			}
-		}
-		else {
-			System.out.println("Please enter a valid menu item number"); 
-		}
-	
+
+		largestPossibleInput = menu.size();
+		int menuChoice = this.getUserIntInput();
+		// choose quantity
+		System.out.println("Select its quantity: ");
+		largestPossibleInput = menu.get(menuChoice).getItemAmountInStock(); 
+		int quantityChoice = this.getUserIntInput();
+		
+		if (quantityChoice > menu.get(quantityChoice).getItemAmountInStock()) {
+			System.out.println("The item is out of stock.");
+		} 
+		
+		// print out order
+		System.out.println(menu.get(menuChoice-1).getItemName() + ", " + "$" + menu.get(menuChoice).getItemPrice() + ", "
+				+ (int) menu.get(menuChoice).getItemCalories() + " calories. " + quantityChoice + " unit(s) added to cart.");
+		cart.addToCart(menu.get(menuChoice), quantityChoice);
+		
+		
+		System.out.println("Would you like to order more food? (y/n): ");
+		yesOrNo = getUserStringInputYesOrNo();  // this function make user enter inputs again if input is not string. 
+		if (yesOrNo.equals("y")) {
+			processOrder();
+		} else if (yesOrNo.equals("n")) {
+			processTip();
+			
+			System.out.println("Order total: $" + cart.getTotalCartPrice());
+			
+			System.out.println("Your order is processed.");
+		} 
+		
+		
+		
+		
+
 	}
 	private void processTip() {
-		String yesOrNoTip; 
-		yesOrNoTip = mealChoice.nextLine(); 
+		String yesOrNoTip;
 		System.out.println("Would you like to add a tip? (y/n)"); 
+
+		
+		yesOrNoTip = getUserStringInputYesOrNo(); 
 		if(yesOrNoTip.equals("y")) {
-			System.out.println("How much would you like to tip? [Ex. type '15' as 15%]");
-			processOrder();
-			System.out.println("Would you like to order more food? (y/n): "); 
-			yesOrNoTip = mealChoice.nextLine(); 
+			cart.getFinalCartPrice(); 
+			
 		}
 		else if (yesOrNoTip.equals("n")) {
-			// tip function goes here.
 			System.out.println("Your order is processed."); 
 			
 		}
 		else {
 			System.out.println("Please enter a valid input."); 
+			
+			
 		}
+	}
+	
+	public String getUserStringInputYesOrNo() {
+		if (mealChoice.hasNextLine()) {
+			String choice = mealChoice.next(); 
+			if (!choice.equals("y") && !choice.equals("n")) {
+				System.out.println("Please enter a valid input");
+				return getUserStringInputYesOrNo(); 
+			}
+			else {
+				return choice; 
+			}
+		}
+		else {
+			System.out.println("Please enter a valid input");
+			return getUserStringInputYesOrNo(); 
+		}
+	}
+	
+
+	
+	public int getUserIntInput() {
+		try {
+			int choice = mealChoice.nextInt();
+			
+			if (choice > 0 && choice <= largestPossibleInput) {
+				return choice; 
+			}
+			
+			else {
+				System.out.println("Please enter valid input");
+				return getUserIntInput(); 
+			}	
+		}
+		catch (InputMismatchException e) {
+			System.out.println("Please enter an integer");
+			mealChoice.next(); 
+			return getUserIntInput(); 
+		}
+		
+
 	}
 }
