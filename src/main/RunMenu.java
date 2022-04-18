@@ -7,12 +7,12 @@ import java.util.Scanner;
 import cart.UserCart;
 import menu.MenuItem;
 
-public class MainMethod {
+public class RunMenu {
 	private Scanner mealChoice; 
     private UserCart cart;
     private ArrayList<MenuItem> menu;
     private static int largestPossibleInput;
-    public MainMethod() {
+    public RunMenu() {
     	mealChoice = new Scanner(System.in);
     	cart = new UserCart();
     	menu = new ArrayList<MenuItem>(); 
@@ -20,7 +20,7 @@ public class MainMethod {
     }
     
 	public static void main(String args[]) {
-		MainMethod foodItemMenu = new MainMethod();
+		RunMenu foodItemMenu = new RunMenu();
 
 		System.out.println("\nWelcome to EasyMeal!\n");
 		foodItemMenu.printMenuItems();
@@ -111,7 +111,7 @@ public class MainMethod {
 		}
 		catch (InputMismatchException e) {
 			System.out.println("Please enter an integer");
-			mealChoice.next(); 
+			mealChoice.next();
 			return getUserIntInput(); 
 		}
 	}
