@@ -7,10 +7,8 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class UserCart {
-    private HashMap<MenuItem, Integer> cart = null;
-
+    private HashMap<MenuItem, Integer> cart;
     public UserCart() { cart = new HashMap<>(); }
-
     public boolean addToCart(MenuItem item, Integer amountToAdd) {
         if (item.getItemAmountInStock() < amountToAdd || amountToAdd <= 0) { return false; }
         if (cart.containsKey(item)) {
@@ -23,7 +21,6 @@ public class UserCart {
         }
         return true;
     }
-
     public boolean removeFromCart(MenuItem item, Integer amountToRemove) {
         if (!cart.containsKey(item) || cart.get(item) < amountToRemove || amountToRemove < 0) { return false; }
         if (cart.get(item).equals(amountToRemove)) {
@@ -46,7 +43,6 @@ public class UserCart {
         }
         return cartPrice;
     }
-
     public double getTotalCalories() {
         double cartCalories = 0.0;
         for (Map.Entry<MenuItem, Integer> cartItems : cart.entrySet()) {
@@ -56,7 +52,6 @@ public class UserCart {
         }
         return cartCalories;
     }
-
     public int getTotalItems() {
         int totalItems = 0;
         for (Map.Entry<MenuItem, Integer> cartItems : cart.entrySet()) {

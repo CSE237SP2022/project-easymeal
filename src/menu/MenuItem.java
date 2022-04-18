@@ -46,10 +46,6 @@ public class MenuItem {
 		return itemAmountInStock; 
 	}
 
-//	public void setItemName(String itemName) {
-//		this.itemName = itemName;
-//	}
-
 	public void setItemPrice(double itemPrice) {
 		this.itemPrice = itemPrice;
 	}
