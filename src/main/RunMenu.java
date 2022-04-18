@@ -70,13 +70,10 @@ public class RunMenu {
 			processOrder();
 		} else if (yesOrNo.equals("n")) {
 			System.out.println("Order total: $" + String.format("%.2f", cart.getFinalCartPrice()));
-			
 			System.out.println("Your order is processed.");
-			
 		}
-
 	}
-	public String getUserStringInputYesOrNo() {
+	private String getUserStringInputYesOrNo() {
 		if (mealChoice.hasNextLine()) {
 			String choice = mealChoice.next(); 
 			if (!choice.equals("y") && !choice.equals("n")) {
@@ -92,7 +89,7 @@ public class RunMenu {
 			return getUserStringInputYesOrNo(); 
 		}
 	}
-	public int getUserIntInput() {
+	private int getUserIntInput() {
 		try {
 			int choice = mealChoice.nextInt();
 			if (choice == 0) {
@@ -100,7 +97,10 @@ public class RunMenu {
 				System.exit(0);
 				return -1;
 			} else if (choice > 0 && choice <= largestPossibleInput) { return choice; }
-			else if (choice > menu.get(menuChoice-1).getItemAmountInStock()) { System.out.println("Not enough in stock, try again!"); }
+			if (menuChoice == 0) { System.out.println("Please enter valid input!"); }
+			else if (choice > menu.get(menuChoice-1).getItemAmountInStock()) {
+				System.out.println("Not enough in stock, try again!");
+			}
 			else { System.out.println("Please enter valid input"); }
 			return getUserIntInput();
 		}
