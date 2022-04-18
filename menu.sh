@@ -4,4 +4,4 @@
 cd src/ || return
 clear
 javac menu/MenuItem.java cart/UserCart.java main/RunMenu.java
-java main/MainMethod
+java main/RunMenu
