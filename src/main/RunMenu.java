@@ -25,13 +25,14 @@ public class RunMenu {
 	public static void main(String[] args) {
 		RunMenu foodItemMenu = new RunMenu();
 
-		System.out.println("\nWelcome to EasyMeal!\n");
 		foodItemMenu.printMenuItems();
 
 		foodItemMenu.processOrder();
 	}
 	
     private void generateMenuItems(){
+		System.out.println("\nWelcome to EasyMeal!\n");
+
         MenuItem taco = new MenuItem(1, "Taco", 4.25, 153, 12);
         MenuItem pizza = new MenuItem(2, "Pizza", 5.25, 357, 6);
         MenuItem corn = new MenuItem(3, "Corn", 7.25, 97, 3);
@@ -121,12 +122,20 @@ public class RunMenu {
 				System.out.println("Leaving menu successful!");
 				System.exit(0);
 				return -1;
-			} else if (choice > 0 && choice <= largestPossibleInput) { return choice; }
-			if (menuChoice == 0) { System.out.println("Please enter valid input!"); }
+			} 
+			else if (choice > 0 && choice <= largestPossibleInput) { 
+				return choice; 
+			}
+			
+			if (menuChoice == 0) { 
+				System.out.println("Please enter valid input!"); 
+			}
 			else if (choice > menu.get(menuChoice-1).getItemAmountInStock()) {
 				System.out.println("Not enough in stock, try again!");
 			}
-			else { System.out.println("Please enter valid input"); }
+			else { 
+				System.out.println("Please enter valid input"); 
+			}
 			return getUserIntInput();
 		}
 		catch (InputMismatchException e) {
