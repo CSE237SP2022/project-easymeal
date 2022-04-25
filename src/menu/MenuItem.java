@@ -1,6 +1,9 @@
 package menu;
 
 
+/**
+ * Represents the menu
+ */
 public class MenuItem {
 	private int itemKey; 
 	private String itemName; 

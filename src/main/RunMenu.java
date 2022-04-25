@@ -7,6 +7,9 @@ import java.util.Scanner;
 import cart.UserCart;
 import menu.MenuItem;
 
+/**
+ * Creates and runs the menu
+ */
 public class RunMenu {
 	private final Scanner mealChoice;
     private final UserCart cart;
@@ -22,10 +25,8 @@ public class RunMenu {
     
 	public static void main(String[] args) {
 		RunMenu foodItemMenu = new RunMenu();
-
 		System.out.println("\nWelcome to EasyMeal!\n");
 		foodItemMenu.printMenuItems();
-
 		foodItemMenu.processOrder();
 	}
     private void generateMenuItems(){
@@ -89,6 +90,10 @@ public class RunMenu {
 			return getUserStringInputYesOrNo(); 
 		}
 	}
+
+	/**
+	 * @return User's menu option number
+	 */
 	private int getUserIntInput() {
 		try {
 			int choice = mealChoice.nextInt();
