@@ -25,13 +25,13 @@ public class RunMenu {
 	public static void main(String[] args) {
 		RunMenu foodItemMenu = new RunMenu();
 
-		System.out.println("\nWelcome to EasyMeal!\n");
 		foodItemMenu.printMenuItems();
 
 		foodItemMenu.processOrder();
 	}
 	
     private void generateMenuItems(){
+	System.out.println("\nWelcome to EasyMeal!\n");
         MenuItem taco = new MenuItem(1, "Taco", 4.25, 153, 12);
         MenuItem pizza = new MenuItem(2, "Pizza", 5.25, 357, 6);
         MenuItem corn = new MenuItem(3, "Corn", 7.25, 97, 3);
