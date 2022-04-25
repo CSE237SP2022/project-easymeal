@@ -7,44 +7,44 @@ import java.util.Scanner;
 import cart.UserCart;
 import menu.MenuItem;
 
+/**
+ * Creates and runs the menu
+ */
 public class RunMenu {
 	private final Scanner mealChoice;
-    private final UserCart cart;
-    private final ArrayList<MenuItem> menu;
-    private static int largestPossibleInput;
+	private final UserCart cart;
+	private final ArrayList<MenuItem> menu;
+	private static int largestPossibleInput;
 	private int menuChoice;
-    public RunMenu() {
+	public RunMenu() {
     	mealChoice = new Scanner(System.in);
     	cart = new UserCart();
     	menu = new ArrayList<>();
-    	generateMenuItems(); 
-    }
-    
+    	generateMenuItems();
+	}
 	public static void main(String[] args) {
 		RunMenu foodItemMenu = new RunMenu();
-
 		System.out.println("\nWelcome to EasyMeal!\n");
 		foodItemMenu.printMenuItems();
-
 		foodItemMenu.processOrder();
 	}
-    private void generateMenuItems(){
-        MenuItem taco = new MenuItem(1, "Taco", 4.25, 153, 12);
-        MenuItem pizza = new MenuItem(2, "Pizza", 5.25, 357, 6);
-        MenuItem corn = new MenuItem(3, "Corn", 7.25, 97, 3);
-        MenuItem salad = new MenuItem(4, "Salad", 5.71, 97, 3); 
-        menu.add(taco);
-        menu.add(pizza);
-        menu.add(corn);
-        menu.add(salad);
-    }
-    private void printMenuItems(){
+	private void generateMenuItems(){
+		MenuItem taco = new MenuItem(1, "Taco", 4.25, 153, 12);
+		MenuItem pizza = new MenuItem(2, "Pizza", 5.25, 357, 6);
+		MenuItem corn = new MenuItem(3, "Corn", 7.25, 97, 3);
+		MenuItem salad = new MenuItem(4, "Salad", 5.71, 97, 3);
+		menu.add(taco);
+		menu.add(pizza);
+		menu.add(corn);
+		menu.add(salad);
+	}
+	private void printMenuItems(){
     	System.out.println("Menu: "); 
     	for (MenuItem item: menu) {
     		System.out.println(item.getItemKey() + ". " + item.getItemName() + " $" + item.getItemPrice());
     	}
     	System.out.println("Press 0 to exit the menu.");
-    }
+	}
 	private void processOrder() {
 		String yesOrNo;
 		// choose menu
@@ -89,6 +89,10 @@ public class RunMenu {
 			return getUserStringInputYesOrNo(); 
 		}
 	}
+
+	/**
+	 * @return User's menu option number
+	 */
 	private int getUserIntInput() {
 		try {
 			int choice = mealChoice.nextInt();
