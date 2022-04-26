@@ -11,7 +11,7 @@ import menu.MenuItem;
  * Creates and runs the menu
  */
 public class RunMenu {
-	private final Scanner mealChoice;
+	protected final Scanner mealChoice;
 	private final UserCart cart;
 	private final ArrayList<MenuItem> menu;
 	private static int largestPossibleInput;
@@ -21,6 +21,13 @@ public class RunMenu {
     	cart = new UserCart();
     	menu = new ArrayList<>();
     	generateMenuItems();
+	}
+
+	public RunMenu(Scanner scannerVar, UserCart cartVal, ArrayList<MenuItem> menuVal) {
+		mealChoice = scannerVar;
+		cart = cartVal;
+		menu = menuVal;
+		generateMenuItems();
 	}
 	public static void main(String[] args) {
 		RunMenu foodItemMenu = new RunMenu();
@@ -73,7 +80,7 @@ public class RunMenu {
 			System.out.println("Your order is processed.");
 		}
 	}
-	private String getUserStringInputYesOrNo() {
+	public String getUserStringInputYesOrNo() {
 		if (mealChoice.hasNextLine()) {
 			String choice = mealChoice.next(); 
 			if (!choice.equals("y") && !choice.equals("n")) {
