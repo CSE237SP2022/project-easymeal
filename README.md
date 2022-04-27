@@ -19,8 +19,7 @@ Several bugs were addressed this iteration as mentioned during user testing.  Th
 To run the code, open command prompt and cd to project directory, then type:
 <code>bash ./menu.sh</code>
 
-Note: when you get permission denied (e.g. zsh: permission denied: ./menu.sh) please enter:
+Note: when you get permission denied (e.g. zsh: permission denied: ./menu.sh) please enter the following code and then type the code above:
 <code>bash chmod 700 menu.sh 
-And then enter <code>bash ./menu.sh</code>
-
+  
 This command will start the program. A list of menu options can be printed by following instructions in the program.
