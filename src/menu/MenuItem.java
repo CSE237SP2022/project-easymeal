@@ -60,7 +60,4 @@ public class MenuItem {
 	public void setItemAmountInStock(int itemAmountInStock) {
 		this.itemAmountInStock = itemAmountInStock;
 	}
-	
-	
-	
 }
