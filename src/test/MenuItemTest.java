@@ -58,5 +58,4 @@ class MenuItemTest {
 		item.setItemAmountInStock(99);
 		assertEquals(99, item.getItemAmountInStock()); 
 	}
-
 }
