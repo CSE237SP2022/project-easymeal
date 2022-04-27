@@ -1,6 +1,9 @@
 package menu;
 
 
+/**
+ * Represents the menu
+ */
 public class MenuItem {
 	private int itemKey; 
 	private String itemName; 
@@ -46,10 +49,6 @@ public class MenuItem {
 		return itemAmountInStock; 
 	}
 
-//	public void setItemName(String itemName) {
-//		this.itemName = itemName;
-//	}
-
 	public void setItemPrice(double itemPrice) {
 		this.itemPrice = itemPrice;
 	}
@@ -61,7 +60,4 @@ public class MenuItem {
 	public void setItemAmountInStock(int itemAmountInStock) {
 		this.itemAmountInStock = itemAmountInStock;
 	}
-	
-	
-	
 }

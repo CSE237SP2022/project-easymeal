@@ -7,42 +7,54 @@ import java.util.Scanner;
 import cart.UserCart;
 import menu.MenuItem;
 
+/**
+ * Creates and runs the menu
+ */
 public class RunMenu {
-	private final Scanner mealChoice;
-    private final UserCart cart;
-    private final ArrayList<MenuItem> menu;
-    private static int largestPossibleInput;
-	private int menuChoice;  
-	private int menuQuantity;   
-	
-    public RunMenu() {
+	protected final Scanner mealChoice;
+	private final UserCart cart;
+	private final ArrayList<MenuItem> menu;
+	private static int largestPossibleInput;
+	private int menuChoice;
+	public RunMenu() {
     	mealChoice = new Scanner(System.in);
     	cart = new UserCart();
     	menu = new ArrayList<>();
-    	generateMenuItems(); 
-    }
-    
+    	generateMenuItems();
+	}
+
+	public RunMenu(Scanner scannerVar, UserCart cartVal, ArrayList<MenuItem> menuVal) {
+		mealChoice = scannerVar;
+		cart = cartVal;
+		menu = menuVal;
+		generateMenuItems();
+	}
 	public static void main(String[] args) {
 		RunMenu foodItemMenu = new RunMenu();
-
+		System.out.println("\nWelcome to EasyMeal!\n");
 		foodItemMenu.printMenuItems();
-
 		foodItemMenu.processOrder();
 	}
-	
-    private void generateMenuItems(){
-	System.out.println("\nWelcome to EasyMeal!\n");
-        MenuItem taco = new MenuItem(1, "Taco", 4.25, 153, 12);
-        MenuItem pizza = new MenuItem(2, "Pizza", 5.25, 357, 6);
-        MenuItem corn = new MenuItem(3, "Corn", 7.25, 97, 3);
-        MenuItem salad = new MenuItem(4, "Salad", 5.71, 97, 3); 
-        menu.add(taco);
-        menu.add(pizza);
-        menu.add(corn);
-        menu.add(salad);
-    }
-    
-    private void printMenuItems(){
+	private void generateMenuItems(){
+		MenuItem classicBurger = new MenuItem(1, "Classic Burger", 9.99, 1120, 25);
+		MenuItem cheeseburger = new MenuItem(2, "Cheeseburger", 10.99, 1220, 20);
+		MenuItem baconCheeseburger = new MenuItem(3, "Bacon Cheeseburger", 11.49, 1310, 12);
+		MenuItem bonelessWings = new MenuItem(4, "Boneless Wings (10 pcs)", 9.49, 660, 14);
+		MenuItem mozzarellaSticks = new MenuItem(5, "Mozzarella Sticks (10 pcs)", 8.29, 880, 10);
+		MenuItem caesarSalad = new MenuItem(6, "Caesar Salad", 4.79, 220, 30);
+		MenuItem soda = new MenuItem(7, "Soda (Coca-Cola)", 1.99, 150, 18);
+		MenuItem beer = new MenuItem(8, "Beer (Coors Light)", 2.99, 100, 8);
+		
+		menu.add(classicBurger);
+		menu.add(cheeseburger);
+		menu.add(baconCheeseburger);
+		menu.add(bonelessWings);
+		menu.add(mozzarellaSticks);
+		menu.add(caesarSalad);
+		menu.add(soda);
+		menu.add(beer);
+	}
+	private void printMenuItems(){
     	System.out.println("Menu: "); 
     	for (MenuItem item: menu) {
     		System.out.println(item.getItemKey() + ". " + item.getItemName() + " $" + item.getItemPrice());
@@ -112,8 +124,11 @@ public class RunMenu {
 			return getUserStringInputYesOrNo(); 
 		}
 	}
-	
-	
+
+	/**
+	 * @return User's menu option number
+	 */
+
 	private int getUserIntInput() {
 		try {
 			int choice = mealChoice.nextInt();
@@ -135,7 +150,4 @@ public class RunMenu {
 			return getUserIntInput(); 
 		}
 	}
-	
-	
-	
 }

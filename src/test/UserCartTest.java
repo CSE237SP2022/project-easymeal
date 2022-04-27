@@ -2,10 +2,18 @@ package test;
 
 import menu.MenuItem;
 import cart.UserCart;
+import main.RunMenu;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 class UserCartTest {
     private MenuItem item1, item2, item3;
@@ -77,10 +85,10 @@ class UserCartTest {
     }
     
     @Test
+    // Choose a 15% tip, otherwise will fail
     void getFinalCartPrice() {
         cart.addToCart(item3, 3);
         cart.addToCart(item2, 1);
         assertEquals(20.21, cart.getFinalCartPrice(), 0.05);
-        //Assumes 15% tip entered, otherwise will fail
     }
 }
