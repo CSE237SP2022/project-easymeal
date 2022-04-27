@@ -38,7 +38,4 @@ class RunMenuTest {
         menu = new RunMenu(mealChoice, new cart.UserCart(), new ArrayList<menu.MenuItem>());
         assertEquals("n", this.menu.getUserStringInputYesOrNo());
     }
-
-
-
 }
