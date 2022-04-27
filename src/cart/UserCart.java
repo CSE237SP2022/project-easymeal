@@ -99,25 +99,29 @@ public class UserCart {
         //Standard restaurant tax in St. Louis		
         System.out.println("Subtotal: $" + String.format("%.2f", theCartPrice));
         System.out.println("Tax (11.4%): $" + String.format("%.2f", theCartPrice * tax));
-        System.out.println("How much would you like to tip? Enter the percent amount without the % [Ex. use '15' for test case purposes]");
-        tip = promptValidDouble(scan)/100;
+        System.out.println("How much would you like to tip? Enter the percent amount without the % [Ex. '15']");
+        tip = promptValidTip(scan)/100;
         if (theCartPrice > 0) {
         	finalPrice = theCartPrice + (theCartPrice * tip) + (theCartPrice * tax);
         }
-        scan.close();   // Yi's edit
+        scan.close();
         return finalPrice;
     }
 
-    private double promptValidDouble(Scanner scan) {
+    private double promptValidTip(Scanner scan) {
         while (!scan.hasNextDouble()) {
             System.out.println("Please enter a valid tip!");
             scan.next();
         }
         double tip = scan.nextDouble();
-        if (tip < 0) {
+        while (tip < 0) {
             System.out.println("Please enter a positive tip!");
             tip = scan.nextDouble();
-        }
+        } 
+        while (tip > 100) {
+            System.out.println("Please enter a smaller tip!");
+            tip = scan.nextDouble();
+        } 
         return tip;
     }
 }
