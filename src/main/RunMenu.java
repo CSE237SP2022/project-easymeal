@@ -109,7 +109,7 @@ public class RunMenu {
 	
 	
 	
-	private String getUserStringInputYesOrNo() {
+	public String getUserStringInputYesOrNo() {
 		if (mealChoice.hasNextLine()) {
 			String choice = mealChoice.next(); 
 			if (!choice.equals("y") && !choice.equals("n")) {
