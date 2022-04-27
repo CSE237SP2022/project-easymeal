@@ -60,36 +60,55 @@ public class RunMenu {
     		System.out.println(item.getItemKey() + ". " + item.getItemName() + " $" + item.getItemPrice());
     	}
     	System.out.println("Press 0 to exit the menu.");
-	}
+    }
+    
 	private void processOrder() {
+		chooseItem();
+		chooseQuantity(); 
+		printItemAndQuantity(); 
+	}
+	
+	private void chooseItem() {
 		String yesOrNo;
-		// choose menu
 		System.out.println("Select menu item number or 0 to exit:");
 		largestPossibleInput = menu.size();
 		menuChoice = this.getUserIntInput();
-
-		// choose quantity
+	}
+	
+	private void chooseQuantity() {
 		System.out.println("Select its quantity or 0 to exit the menu: ");
-		largestPossibleInput = menu.get(menuChoice-1).getItemAmountInStock();
-		int quantityChoice = this.getUserIntInput();
-
-		if (cart.addToCart(menu.get(menuChoice-1), quantityChoice)) {
-			// print out order
+		largestPossibleInput = menu.get(menuChoice - 1).getItemAmountInStock();
+		menuQuantity= this.getUserIntInput();
+	}
+	
+	private void printItemAndQuantity() {
+		if (cart.addToCart(menu.get(menuChoice-1), menuQuantity)) {
 			System.out.println(menu.get(menuChoice-1).getItemName() + ", " + "$" + menu.get(menuChoice-1).getItemPrice() + ", "
-					+ (int) menu.get(menuChoice-1).getItemCalories() + " calories. " + quantityChoice + " unit(s) added to cart.");
-		} else { System.out.println("Error adding to cart"); }
-		
-		
-		System.out.println("Would you like to order more food? (y/n): ");
-		yesOrNo = getUserStringInputYesOrNo();  // this function make user enter inputs again if input is not string. 
-		if (yesOrNo.equals("y")) {
-			processOrder();
-		} else if (yesOrNo.equals("n")) {
-			System.out.println("Order total: $" + String.format("%.2f", cart.getFinalCartPrice()));
-			System.out.println("Your order is processed.");
+					+ (int) menu.get(menuChoice-1).getItemCalories() + " calories. " + menuQuantity + " unit(s) added to cart.");
+			System.out.println("Would you like to order more food? (y/n): ");
+			String yesOrNo = getUserStringInputYesOrNo();  
+			if (yesOrNo.equals("y")) {
+				chooseItem();
+				chooseQuantity(); 
+				printItemAndQuantity(); 
+			} 
+			else if (yesOrNo.equals("n")) {
+				printOrder(); 
+			}
+		} 
+		else { 
+			System.out.println("Error adding to cart"); 
 		}
 	}
-	public String getUserStringInputYesOrNo() {
+	
+	private void printOrder() {
+		System.out.println("Order total: $" + String.format("%.2f", cart.getFinalCartPrice()));
+		System.out.println("Your order is processed.");
+	}
+	
+	
+	
+	private String getUserStringInputYesOrNo() {
 		if (mealChoice.hasNextLine()) {
 			String choice = mealChoice.next(); 
 			if (!choice.equals("y") && !choice.equals("n")) {
@@ -109,6 +128,7 @@ public class RunMenu {
 	/**
 	 * @return User's menu option number
 	 */
+
 	private int getUserIntInput() {
 		try {
 			int choice = mealChoice.nextInt();
